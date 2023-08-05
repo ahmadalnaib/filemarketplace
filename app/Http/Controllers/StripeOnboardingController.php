@@ -17,4 +17,24 @@ class StripeOnboardingController extends Controller
     {
         return view('onboarding');
     }
+
+    public function redirect(Request $request)
+    {
+        $response=app('stripe')->accountLinks->create([
+            'account'=>$request->user()->stripe_account_id,
+            'type'=>'account_onboarding',
+            'refresh_url'=>route('onboarding.redirect'),
+            'return_url'=>route('onboarding.verity'),
+
+
+
+        ]);
+        return redirect($response->url);
+
+    }
+
+    public function verity()
+        {
+            dd('ok');
+        }
 }

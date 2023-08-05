@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',HomeController::class);
 Route::get('/onboarding',[StripeOnboardingController::class,'index'])->name('onboarding');
+Route::get('/onboarding/redirect',[StripeOnboardingController::class,'redirect'])->name('onboarding.redirect');
+Route::get('/onboarding/verity',[StripeOnboardingController::class,'verity'])->name('onboarding.verity');
 
 Route::get('/dashboard',DashboardController::class)->name('dashboard');
 
