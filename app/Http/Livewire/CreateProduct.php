@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class CreateProduct extends Component
 {
@@ -19,6 +20,11 @@ class CreateProduct extends Component
     public function submit()
     {
        dd('submit'); 
+    }
+
+    public function updatedStateTitle($title)
+    {
+       $this->state['slug']=Str::slug($title);
     }
     public function render()
     {
