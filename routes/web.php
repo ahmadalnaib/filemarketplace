@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductCreateController;
-use App\Http\Controllers\ProductIndexController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StripeOnboardingController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductEditController;
+use App\Http\Controllers\ProductIndexController;
+use App\Http\Controllers\ProductCreateController;
+use App\Http\Controllers\StripeOnboardingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::get('/onboarding/verity',[StripeOnboardingController::class,'verity'])->n
 Route::get('/dashboard',DashboardController::class)->name('dashboard');
 Route::get('/products',ProductIndexController::class)->name('products');
 Route::get('/products/create',ProductCreateController::class)->name('products.create');
+Route::get('/products/{product}/edit',ProductEditController::class)->name('products.edit');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
