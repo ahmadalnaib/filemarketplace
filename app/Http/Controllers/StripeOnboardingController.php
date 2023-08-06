@@ -33,8 +33,13 @@ class StripeOnboardingController extends Controller
 
     }
 
-    public function verity()
+    public function verity(Request $request)
         {
-            dd('ok');
+           $response=app('stripe')->accounts->retrieve($request->user()->stripe_account_id,[]);
+           $request->user()->update([
+         'stripe_account_enabled'=>$response->payouts_enabled
+           ]);
+
+           return redirect()->route('dashboard');
         }
 }
