@@ -16,7 +16,7 @@
           </a>
           @endforeach
 
-          <a  href=""class="bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg h-44 flex items-center justify-center" >+ Create a product</a>
+          <a  href="{{route('products.create')}}" class="bg-gray-200 overflow-hidden shadow-sm sm:rounded-lg h-44 flex items-center justify-center" >+ Create a product</a>
       </div>
   </div>
 </x-app-layout>
