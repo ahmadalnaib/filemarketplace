@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\File;
 use Livewire\Component;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+
+
 
 class CreateProduct extends Component
 {
@@ -36,7 +39,16 @@ class CreateProduct extends Component
     {
         $this->validate();
        
-        auth()->user()->products()->create($this->state);
+      $product=  auth()->user()->products()->create($this->state);
+
+      $files=collect($this->files)->map(function($file){
+        return File::make([
+            'filename'=>$file->getClientOriginalName(),
+            'path'=>$file->store('files')
+        ]);
+      });
+
+      $product->files()->saveMany($files);
         return redirect()->route('products');
     }
 
