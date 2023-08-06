@@ -3,10 +3,16 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Livewire\WithFileUploads;
 
 class CreateProduct extends Component
 {
+    use WithFileUploads;
+
+    public $uploads=[];
+    public $files=[];
     public $state=[
         'title'=>null,
         'slug'=>null,
@@ -37,6 +43,20 @@ class CreateProduct extends Component
     public function updatedStateTitle($title)
     {
        $this->state['slug']=Str::slug($title);
+    }
+
+    public function updatedUploads($uploads)
+    {
+             $this->files=array_merge($this->files,$uploads);
+             $this->uploads=[];
+             
+    }
+
+    public function removeFile($filename)
+    {
+           $this->files=Arr::where($this->files,function($file) use ($filename){
+            return $file->getFilename() !== $filename;
+ });
     }
     public function render()
     {

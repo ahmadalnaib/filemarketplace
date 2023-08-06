@@ -41,7 +41,7 @@
 
 </section>
 
-<section>
+<section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Add Files') }}
@@ -53,8 +53,17 @@
     </header>
 
     <div>
-        add files
+     <input type="file" wire:model="uploads" multiple>
     </div>
+
+    <ul>
+        @foreach ($files as $file)
+            <li>
+                {{$file->getClientOriginalName()}}
+                <button type="button" class="text-indigo-500" wire:click="removeFile('{{$file->getFilename()}}')">Remove</button>
+            </li>
+        @endforeach
+    </ul>
 </section>
 
 <div>
