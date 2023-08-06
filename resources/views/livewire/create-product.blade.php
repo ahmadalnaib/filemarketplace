@@ -13,23 +13,23 @@
     <div>
         <x-input-label for="title" :value="__('Title')" />
         <x-text-input wire:model.lazy='state.title' id="title" class="block mt-1 w-full" type="text" name="title"   />
-        <x-input-error :messages="$errors->get('title')" class="mt-2" />
+        <x-input-error :messages="$errors->get('state.title')" class="mt-2" />
     </div>
     <div>
         <x-input-label for="slug" :value="__('Slug')" />
         <x-text-input wire:model.lazy='state.slug' id="slug" class="block mt-1 w-full" type="text" name="slug"   />
-        <x-input-error :messages="$errors->get('slug')" class="mt-2" />
+        <x-input-error :messages="$errors->get('state.slug')" class="mt-2" />
     </div>
     <div>
         <x-input-label  for="description" :value="__('Description')" />
         <x-textarea wire:model.lazy='state.description' id="description" class="block mt-1 w-full" type="text" name="description"   rows="4"/>
-        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+        <x-input-error :messages="$errors->get('state.description')" class="mt-2" />
     </div>
 
     <div>
         <x-input-label for="price" :value="__('Price')" />
         <x-text-input wire:model.lazy='state.price' id="price" class="block mt-1 w-full" type="text" name="price"   />
-        <x-input-error :messages="$errors->get('price')" class="mt-2" />
+        <x-input-error :messages="$errors->get('state.price')" class="mt-2" />
     </div>
    
     <div class="block mt-4">

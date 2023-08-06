@@ -16,10 +16,22 @@ class CreateProduct extends Component
 
     ];
 
+    protected $rules=[
+        'state.title'=>'required|max:255',
+        'state.slug'=>'required|max:255|unique:products,slug',
+        'state.description'=>'required',
+        'state.price'=>'required|decimal:0,2|min:1',
+        'state.live'=>'boolean'
+
+    ];
+
 
     public function submit()
     {
-       dd('submit'); 
+        $this->validate();
+       
+        auth()->user()->products()->create($this->state);
+        return redirect()->route('products');
     }
 
     public function updatedStateTitle($title)

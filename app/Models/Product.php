@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -16,6 +17,13 @@ class Product extends Model
         'live'
 
     ];
+
+    protected function price():Attribute
+    {
+        return Attribute::make(
+           set:fn(float $price)=>$price *100,
+        )->withoutObjectCaching();
+    }
 
     public function user()
     {
